@@ -4,7 +4,10 @@ Attendance Management System is a web-based platform developed to simplify and d
 
 Demo Video
 -----
-Coming Soon
+
+https://github.com/user-attachments/assets/35d170cf-2b4b-48ee-ab38-34552eaee1d7
+
+
 
 
 Table of Contents
