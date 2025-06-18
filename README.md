@@ -1,12 +1,11 @@
-# Attendance-Management-System
+# Attendance Management System
 
-Attendance Management System is a web-based platform developed to simplify and digitalize the process of marking and analyzing student attendance in educational institutions. It supports multiple user roles—Admin, Teacher, and Student—while managing lectures and labs across various classes and batches. The system provides a seamless experience for marking, storing, viewing, and analyzing attendance records efficiently.
+Attendance Management System is a web-based platform developed to simplify and digitalize the process of marking and analyzing student attendance in educational institutions. It supports multiple user roles Teacher and Student while managing lectures and labs across various classes and batches. The system provides a seamless experience for marking, storing, viewing, and analyzing attendance records efficiently.
 
 Demo Video
 -----
 
 https://github.com/user-attachments/assets/35d170cf-2b4b-48ee-ab38-34552eaee1d7
-
 
 
 
@@ -30,12 +29,12 @@ Features
 - **Teacher**
 
     - Mark attendance (lecture/lab)
-    - View and export attendance records
+    - View attendance records
 
 - **Student**
 
     - View personal attendance in graphical and tabular formats
-    - Track subject-wise and date-wise attendance
+    - Get access to Syllabus and notes of the semester
 
 
 ### Class & Batch Management
@@ -60,18 +59,17 @@ Technologies Used
 ----
 
 - HTML, CSS, JavaScript (Frontend)
-- Node.js (or Django, depending on implementation)
+- Node.js (for backend logic)
 - MySQL (Database)
-- Chart.js / Google Charts (for attendance visualization)
+- Chart.js / Google charts (for attendance visualization)
 - Express (for routing)
-- Sequelize or SQLAlchemy (if using ORM)
 
 Database Structure
 ----
 
 ### `users`  
 Stores user credentials and role-based data  
-- `id`, `username`, `password`, `role`, `umb_id`, `teacher_id`, `roll_no`
+- `id`, `username`, `password`, `role`, `umb_id`, `name`, `email`, `class_id`, `batch_id`
 
 ### `classes`  
 - `class_id`, `class_name` (e.g., T1, T2)
@@ -80,7 +78,7 @@ Stores user credentials and role-based data
 - `batch_id`, `batch_name`, `class_id`
 
 ### `subjects`  
-- `subject_id`, `subject_name`, `teacher_id`, `class_id`, `batch_id`
+- `subject_id`, `subject_name`, `teacher_id`
 
 ### `lecture_details`  
 Stores individual lecture/lab session info  
@@ -92,18 +90,18 @@ Records attendance status of students per session
 
 ### `student_subject`  
 Linking students with their subjects  
-- `id`, `student_id`, `subject_id`
+- `student_id`, `subject_id`
 
 ### `student_attendance_summary`  
 Stores computed analytics  
-- `id`, `student_id`, `subject_id`, `total_lectures`, `lectures_attended`, `percentage`
+- `student_id`, `subject_id`, `total_lectures`, `lectures_attended`
 
 
 Installation
 ----
 
 **Prerequisites**
-- Node.js and npm (or Python & pip for Django version)
+- Node.js and npm 
 - MySQL Server
 
 **Steps**
@@ -118,16 +116,19 @@ cd attendance-management-system
 
 2. Install dependencies:
 ```
-npm install
+npm install express http ws mysql2 fs path vosk wav cors body-parser
 ```
+3. Download the VOSK Models:
 
-3. Set up the database:
+[vosk-model-small-en-us-0.15](https://alphacephei.com/vosk/models)
+ 
+4. Set up the database:
 
 - Create a database (e.g., attendance_db)
 - Import the provided schema.sql file
 - Update DB config in config/db.js or .env
 
-4. Start the server:
+5. Start the server:
 ```
 node server.js
 ```
@@ -137,25 +138,24 @@ Usage
 ----
 
 1. Open your browser and go to http://localhost:3000
-2. Log in as Admin, Teacher, or Student
+2. Log in as Teacher or Student
 3. Teacher: Create lectures/labs and mark attendance
-4. Student: View attendance data and graphs
+4. Student: View attendance data and graphs and access notes and syllabus
 
 Challenges Faced
 ---
 
 - Handling separate workflows for lectures and labs
 - Efficient data mapping for users across classes and batches
-- Designing a scalable and normalized database
-- Implementing secure role-based login and routing
+- Implementing Speech recognition feature
+- Designing feature which show only those to teacher which they are assigned
 
 Future Scope
 ----
 
 - Biometric/QR-based attendance marking
-- Attendance alerts via email or SMS
-- Android app for mobile attendance tracking
-- Export reports as Excel/PDF
+- Edit the mrked attendace
+- Download the attendnce in different forms (like pdf, excel, etc)
 
 Contributing
 ----
